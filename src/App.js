@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import './App.css';
-import HomeView from './views/HomeView';
-import MoviesView from './views/MoviesView';
+import HomePage from './views/HomePage';
+import MoviesPage from './views/MoviesPage';
+import MovieDetailsPage from './views/MovieDetailsPage';
 
 class App extends Component {
   render() {
@@ -31,9 +32,10 @@ class App extends Component {
         </ul>
 
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route path="/movies" component={MoviesView} />
-          <Route component={HomeView} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />
+          <Route path="/movies" component={MoviesPage} />
+          <Route component={HomePage} />
         </Switch>
       </>
     );

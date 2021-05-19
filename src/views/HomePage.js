@@ -1,21 +1,16 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class HomeView extends Component {
+class HomePage extends Component {
   state = {
     movies: [],
   };
 
   async componentDidMount() {
-    // const apiKey = 'edaea771b09be1ce746ab8b68de11a9b';
-
-    // https://developers.themoviedb.org/3/trending/get-trending?api_key=edaea771b09be1ce746ab8b68de11a9b
-
     const response = await axios.get(
       'https://api.themoviedb.org/3/trending/movie/day?api_key=edaea771b09be1ce746ab8b68de11a9b',
     );
-
-    console.log(response.data.results);
 
     this.setState({
       movies: response.data.results,
@@ -24,12 +19,15 @@ class HomeView extends Component {
 
   render() {
     const { movies } = this.state;
+    // console.log(this.props.match.url);
     return (
       <>
         <h1>Trending today</h1>
         <ul>
           {movies.map(movie => (
-            <li key={movie.id}>{movie.title}</li>
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            </li>
           ))}
         </ul>
       </>
@@ -37,4 +35,4 @@ class HomeView extends Component {
   }
 }
 
-export default HomeView;
+export default HomePage;
