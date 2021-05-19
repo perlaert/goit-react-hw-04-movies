@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import defaultCastImg from './defaultCastImg.jpeg';
+import defaultCastImg from './defaultCastImg.jpg';
 
 class Cast extends Component {
   state = {

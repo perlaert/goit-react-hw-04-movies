@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import defaultMovieImg from '../components/defaultMovieImg.jpeg';
+import defaultMovieImg from '../components/defaultMovieImg.jpg';
 import Cast from '../components/Cast/Cast';
 import Reviews from '../components/Reviews/Reviews';
 
