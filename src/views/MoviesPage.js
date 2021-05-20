@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import moviesApi from '../components/services/movies-api';
 import Loader from 'react-loader-spinner';
+import Error from '../components/Error/Error';
 
 class MoviesPage extends Component {
   state = {
@@ -63,12 +64,13 @@ class MoviesPage extends Component {
   };
 
   render() {
-    const { movies, isLoading } = this.state;
+    const { movies, isLoading, error } = this.state;
     const shouldPenderLoadMoreBtn = movies.length > 0 && !isLoading;
 
     return (
       <div>
         <SearchBar onSubmit={this.onChangeQuery}></SearchBar>
+        {error && <Error message="Something went wrong. Try again." />}
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>

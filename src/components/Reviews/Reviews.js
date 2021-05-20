@@ -1,24 +1,39 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import moviesApi from '../services/movies-api';
+import Error from '../Error/Error';
 
 class Reviews extends Component {
   state = {
     reviews: [],
+    error: null,
+    isLoading: false,
   };
 
-  async componentDidMount() {
-    const { movieId } = this.props.match.params;
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=edaea771b09be1ce746ab8b68de11a9b`,
-    );
-
-    this.setState({ reviews: response.data.results });
+  componentDidMount() {
+    this.fetchMovieDetails();
   }
+
+  fetchMovieDetails = () => {
+    const { movieId } = this.props.match.params;
+    moviesApi
+      .fetchMovieReviews(movieId)
+      .then(results => this.setState({ reviews: results }))
+      .catch(error =>
+        this.setState({
+          error,
+        }),
+      )
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
+
   render() {
-    const { reviews } = this.state;
+    const { reviews, error } = this.state;
     return (
       <div>
         <h2>Оброз фильма</h2>
+        {error && <Error message="Something went wrong. Try again." />}
         <ul>
           {reviews.length > 0
             ? reviews.map(review => (

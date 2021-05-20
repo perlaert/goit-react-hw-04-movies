@@ -1,24 +1,41 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import defaultCastImg from './defaultCastImg.jpg';
+import moviesApi from '../services/movies-api';
+import Error from '../Error/Error';
 
 class Cast extends Component {
   state = {
     cast: [],
+    error: null,
+    isLoading: false,
   };
 
-  async componentDidMount() {
-    const { movieId } = this.props.match.params;
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=edaea771b09be1ce746ab8b68de11a9b`,
-    );
-
-    this.setState({ cast: response.data.cast });
+  componentDidMount() {
+    this.fetchMovieDetails();
   }
+
+  fetchMovieDetails = () => {
+    const { movieId } = this.props.match.params;
+    moviesApi
+      .fetchMovieCast(movieId)
+      .then(cast => this.setState({ cast: cast }))
+      .catch(error =>
+        this.setState({
+          error,
+        }),
+      )
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
+
   render() {
     return (
       <div>
         <h2>Aктерский состав</h2>
+        {this.state.error && (
+          <Error message="Something went wrong. Try again." />
+        )}
         <ul>
           {this.state.cast.map(item => (
             <li key={item.id}>
