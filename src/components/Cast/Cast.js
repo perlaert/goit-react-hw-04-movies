@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import defaultCastImg from './defaultCastImg.jpg';
 import moviesApi from '../services/movies-api';
 import Error from '../Error/Error';
+import style from './Cast.module.css';
 
 class Cast extends Component {
   state = {
@@ -36,7 +37,7 @@ class Cast extends Component {
         {this.state.error && (
           <Error message="Something went wrong. Try again." />
         )}
-        <ul>
+        <ul className={style.CastList}>
           {this.state.cast.map(item => (
             <li key={item.id}>
               <img
@@ -46,6 +47,7 @@ class Cast extends Component {
                     : defaultCastImg
                 }
                 alt={item.name}
+                className={style.CastItemImage}
               />
               <p>{item.name}</p>
               <p>Character: {item.character}</p>

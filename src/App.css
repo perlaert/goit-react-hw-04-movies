@@ -39,7 +39,9 @@
 
 .NavLink {
   font-size: 20px;
-  color: black;
+  color: grey;
+  margin-right: 15px;
+  text-decoration: none;
 }
 
 .NavLink--active {

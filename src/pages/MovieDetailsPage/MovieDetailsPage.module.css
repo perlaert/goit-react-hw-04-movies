@@ -1,0 +1,28 @@
+.MovieDetails {
+  margin: 15px 30px;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+
+.MovieCard {
+  display: flex;
+  color: black;
+}
+
+.decr {
+  margin-left: 15px;
+}
+
+.GenresList {
+  display: flex;
+}
+
+.GenresList li {
+  margin-right: 16px;
+}
+
+/* .CastInfo {
+  text-decoration: blue underline;
+} */

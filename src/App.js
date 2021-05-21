@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import AppBar from './components/AppBar/AppBar';
-import HomePage from './views/HomePage';
-import MoviesPage from './views/MoviesPage';
-import MovieDetailsPage from './views/MovieDetailsPage';
+import HomePage from './pages/HomePage/HomePage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
+import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
 import routes from './routes';
 
 class App extends Component {

@@ -1,10 +1,12 @@
 import { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import defaultMovieImg from '../components/images/defaultMovieImg.jpg';
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
-import moviesApi from '../components/services/movies-api';
-import Error from '../components/Error/Error';
+import defaultMovieImg from '../../components/images/defaultMovieImg.jpg';
+import Cast from '../../components/Cast/Cast';
+import Reviews from '../../components/Reviews/Reviews';
+import moviesApi from '../../components/services/movies-api';
+import Error from '../../components/Error/Error';
+import route from '../../routes';
+import style from './MovieDetailsPage.module.css';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -32,26 +34,33 @@ class MovieDetailsPage extends Component {
       });
   };
 
+  handleGoBack = () => {
+    const { location, history } = this.props;
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
+    return history.push(route.home);
+
+    // history.push(location?.state?.from || route.home);
+  };
+
   render() {
     const { poster_path, title, release_date, vote_average, overview, genres } =
       this.state.movie;
 
-    const year = new Date(Date(release_date)).getFullYear();
+    const year = new Date(release_date).getFullYear();
 
     const { match } = this.props;
 
     return (
-      <div>
-        <button
-          type="button"
-          onClick={() => this.props.history.push('/movies')}
-        >
+      <div className={style.MovieDetails}>
+        <button type="button" onClick={this.handleGoBack} className={style.btn}>
           Go back
         </button>
         {this.state.error && (
           <Error message="Something went wrong. Try again." />
         )}
-        <div>
+        <div className={style.MovieCard}>
           <img
             src={
               poster_path
@@ -60,26 +69,24 @@ class MovieDetailsPage extends Component {
             }
             alt={title}
           />
-          <h1>
-            {title}
-            <span> ({year})</span>
-          </h1>
-          <p>User Score: {(vote_average * 100) / 10}%</p>
+          <div className={style.decr}>
+            <h1>
+              {title}
+              <span> ({year})</span>
+            </h1>
+            <p>User Score: {(vote_average * 100) / 10}%</p>
+            <h2>Overview</h2>
+            <p>{overview}</p>
+            <h2>Genres</h2>
+            <ul className={style.GenresList}>
+              {genres &&
+                genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
+            </ul>
+          </div>
         </div>
         <div>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-        </div>
-        <div>
-          <h2>Genres</h2>
-          <ul>
-            {genres &&
-              genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
-          </ul>
-        </div>
-        <div>
-          <h3>Additional information</h3>
-          <ul>
+          <h2>Additional information</h2>
+          <ul className={style.CastInfo}>
             <li>
               <Link to={`${match.url}/cast`}>Cast</Link>
             </li>

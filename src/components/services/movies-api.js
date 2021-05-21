@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-const apiKey = 'edaea771b09be1ce746ab8b68de11a9b';
+const apiKey = '90996ae54f24edbe7886996fac12fc31';
 
 const fetchMovies = ({ searchQuery = '', currentPage = 1 }) => {
   return axios
@@ -12,9 +12,9 @@ const fetchMovies = ({ searchQuery = '', currentPage = 1 }) => {
     .then(response => response.data.results);
 };
 
-const fetchTrendingMovies = () => {
+const fetchTrendingMovies = page => {
   return axios
-    .get(`/trending/movie/day?api_key=${apiKey}`)
+    .get(`/trending/movie/day?api_key=${apiKey}&page=${page}`)
     .then(response => response.data.results);
 };
 
