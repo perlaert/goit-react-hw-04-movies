@@ -1,17 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './MoviePreview.module.css';
 
 const MoviePreview = ({ movieImg, title }) => {
   return (
-    <div class="card">
+    <div>
       <div className={style.MoviePreview_thumb}>
-        <img src={movieImg} alt={title} class="img-card" />
+        <img src={movieImg} alt={title} />
       </div>
-      <div class="cardBody">
+      <div>
         <h3>{title}</h3>
       </div>
     </div>
   );
+};
+
+MoviePreview.protoType = {
+  movieImg: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default MoviePreview;

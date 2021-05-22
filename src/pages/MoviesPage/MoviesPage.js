@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 import queryString from 'query-string';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -11,6 +12,12 @@ import Button from '../../components/Button/Button';
 import style from '../../components/styles/base.module.css';
 
 class MoviesPage extends Component {
+  static props = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
   state = {
     searchQuery: '',
     movies: [],
@@ -91,8 +98,9 @@ class MoviesPage extends Component {
   };
 
   render() {
-    const { movies, isLoading, error } = this.state;
-    const shouldPenderLoadMoreBtn = movies.length > 0 && !isLoading;
+    const { movies, isLoading, error, fetchLength } = this.state;
+    const shouldPenderLoadMoreBtn =
+      movies.length > 0 && !isLoading && fetchLength === 20;
     const { match, location } = this.props;
 
     return (
@@ -124,8 +132,8 @@ class MoviesPage extends Component {
 
           {isLoading && (
             <Loader
-              type="ThreeDots"
-              color="#3f51b5"
+              type="BallTriangle"
+              color="#e1e2ed"
               height={80}
               width={80}
               className="loader"

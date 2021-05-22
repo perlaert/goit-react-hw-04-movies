@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 import moviesApi from '../../components/services/movies-api';
 import Error from '../../components/Error/Error';
@@ -9,6 +10,11 @@ import MoviePreview from '../../components/MoviePreview/MoviePreview';
 import style from '../../components/styles/base.module.css';
 
 class HomePage extends Component {
+  static props = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+  };
+
   state = {
     movies: [],
     error: null,
@@ -99,8 +105,8 @@ class HomePage extends Component {
 
           {isLoading && (
             <Loader
-              type="ThreeDots"
-              color="#3f51b5"
+              type="BallTriangle"
+              color="##e1e2ed"
               height={80}
               width={80}
               className="loader"

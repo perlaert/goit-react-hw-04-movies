@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import defaultCastImg from './defaultCastImg.jpg';
 import moviesApi from '../services/movies-api';
 import Error from '../Error/Error';
 import style from './Cast.module.css';
 
 class Cast extends Component {
+  static propsTypes = {
+    match: PropTypes.object.isRequired,
+  };
+
   state = {
     cast: [],
     error: null,
@@ -17,6 +22,7 @@ class Cast extends Component {
 
   fetchMovieDetails = () => {
     const { movieId } = this.props.match.params;
+
     moviesApi
       .fetchMovieCast(movieId)
       .then(cast => this.setState({ cast: cast }))

@@ -23,6 +23,7 @@
   margin-right: 16px;
 }
 
-/* .CastInfo {
-  text-decoration: blue underline;
-} */
+.CastInfo a {
+  text-decoration: underline;
+  color: blue;
+}

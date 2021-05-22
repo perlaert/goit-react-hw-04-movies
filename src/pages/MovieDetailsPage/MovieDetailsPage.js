@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import defaultMovieImg from '../../components/images/defaultMovieImg.jpg';
 import Cast from '../../components/Cast/Cast';
 import Reviews from '../../components/Reviews/Reviews';
@@ -9,6 +10,12 @@ import route from '../../routes';
 import style from './MovieDetailsPage.module.css';
 
 class MovieDetailsPage extends Component {
+  static props = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
   state = {
     movie: [],
     error: null,
