@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 import queryString from 'query-string';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import moviesApi from '../../components/services/movies-api';
+import moviesApi from '../../services/movies-api';
 import Error from '../../components/Error/Error';
 import MoviePreview from '../../components/MoviePreview/MoviePreview';
 import defaultMovieImg from '../../components/images/defaultMovieImg.jpg';
 import Button from '../../components/Button/Button';
-import style from '../../components/styles/base.module.css';
+import style from '../../styles/base.module.css';
 
 class MoviesPage extends Component {
   static props = {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import defaultMovieImg from '../../components/images/defaultMovieImg.jpg';
 import Cast from '../../components/Cast/Cast';
 import Reviews from '../../components/Reviews/Reviews';
-import moviesApi from '../../components/services/movies-api';
+import moviesApi from '../../services/movies-api';
 import Error from '../../components/Error/Error';
 import route from '../../routes';
 import style from './MovieDetailsPage.module.css';

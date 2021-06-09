@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moviesApi from '../services/movies-api';
+import moviesApi from '../../services/movies-api';
 import Error from '../Error/Error';
 
 class Reviews extends Component {

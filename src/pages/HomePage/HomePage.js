@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
-import moviesApi from '../../components/services/movies-api';
+import moviesApi from '../../services/movies-api';
 import Error from '../../components/Error/Error';
 import Button from '../../components/Button/Button';
 import defaultMovieImg from '../../components/images/defaultMovieImg.jpg';
 import MoviePreview from '../../components/MoviePreview/MoviePreview';
-import style from '../../components/styles/base.module.css';
+import style from '../../styles/base.module.css';
 
 class HomePage extends Component {
   static props = {
